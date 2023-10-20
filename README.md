@@ -1,1 +1,1 @@
-# learningNotes
+**Just some study notes.**
