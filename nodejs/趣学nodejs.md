@@ -156,5 +156,6 @@ const pub = (function() {
 * CMD（Common Mondule Definition: 一般模块定义）推崇依赖就近，延迟执行
 * UMD（Universal Module Definition: 通用模块定义）
 
+node.js目前有两个模块系统：[CommonJS](https://nodejs.cn/api/modules.html)和[ECMAScript](https://nodejs.cn/api/esm.html)
 
 
