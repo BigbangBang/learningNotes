@@ -46,4 +46,6 @@ class MyClass {
 **参数数量**
 当你在方法中使用'this'类型时，方法调用时可以省略'this'参数。TypeScript会自动处理'this'参数的传递。
 
-[官方文档](https://www.typescriptlang.org/docs/handbook/2/functions.html#declaring-this-in-a-function)
+Typescript官方文档
+> https://www.typescriptlang.org/docs/handbook/2/classes.html#this-types
+> https://www.typescriptlang.org/docs/handbook/2/functions.html#declaring-this-in-a-function
