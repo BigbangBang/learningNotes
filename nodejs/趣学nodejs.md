@@ -159,3 +159,48 @@ const pub = (function() {
 node.js目前有两个模块系统：[CommonJS](https://nodejs.cn/api/modules.html)和[ECMAScript](https://nodejs.cn/api/esm.html)
 
 
+### CommonJS
+
+Node.js会将一下内容视为CommonJS模块
+* 扩展名为.cjs的文件
+* 最近的父package.json文件包含值为"commonjs"的顶层字段"type"时，则扩展名为.js的文件
+* 扩展名不是 .mjs、.cjs、.json、.node 或 .js 的文件（当最近的父 package.json 文件包含值为 "module" 的顶层字段 "type" 时，这些文件将被识别为 CommonJS 模块，仅当它们被 required，不用作程序的命令行入口点）。
+
+**循环**
+当有require()调用时，模块在返回时可能未完成执行。
+```javascript
+// a.js
+console.log('a starting')
+exports.done = false;
+const b = require('./b');
+console.log('in a, b.done = %j', b.done);
+exports.done = true;
+console.log('a done');
+
+// b.js
+console.log('b starting');
+exports.done = false;
+const a = require('./a');
+console.log('in b, a.done = %j', a.done);
+exports.done = true;
+console.log('b done');
+
+// main.js
+console.log('main starting');
+const a = require('./a');
+const b = require('./b');
+console.log('in main a.done = %j, b.done = %j', a.done, b.done);
+
+// 执行node main.js结果
+/*
+main starting
+a starting
+b starting
+in b, a.done = false
+b done
+in a, b.done = true
+a done
+in main a.done = true, b.done = true
+*/
+```
+
