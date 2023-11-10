@@ -204,3 +204,30 @@ in main a.done = true, b.done = true
 */
 ```
 
+### ECMAScript
+
+ES模块设计思想是尽量的静态化，使得编译时就能确定模块的依赖关系，已经输入和输出的变量。CommonJS模块就是对象，输入时必须查找对象属性。
+ES模块不是对象，是通过import命令显示的输入代码，export命令显示的输出代码。
+
+import的时候用户需要知道加载的变量名或函数名。export default命令为模块指定默认输出，其他模块在加载默认输出时，可以给默认输出对象指定任意名字。
+export对外输出的必须是：函数（Function），类（class），var、let、const声明的变量。
+```javascript
+
+// export-default.js
+export default function funcDefaukt() {
+  console.log('default fuction');
+}
+
+export func1() {
+  console.log('func1');
+}
+
+// test.js
+
+import dfunc, {func1} from './export-default';
+dfunc();
+func1();
+```
+
+
+
