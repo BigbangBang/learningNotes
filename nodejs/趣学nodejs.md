@@ -229,5 +229,40 @@ dfunc();
 func1();
 ```
 
+**循环加载**
+ES6处理"循环加载"的时候与CommonJS有本质的不同。ES6模块是动态引用，如果使用import从一个模块中加载变量，变量不会被缓存，而是成为一个被加载模块的引用，需要保证取值的时候能够取到值。
+
+```javascript
+// a.mjs
+import {bar} from './b';
+console.log('a.mjs');
+console.log(bar);
+export let foo = 'foo';
+// export function foo() {return 'foo'};
+
+
+// b.mjs
+import {foo} for './a';
+console.log('b.mjs');
+console.log(foo);
+export let bar = 'bar';
+// export function bar() {return 'bar'};
+
+// 执行是会报错
+/**
+ * $ node --experimental-modules a.mjs
+ * b.mjs
+ * ReferenceError: foo is not defined
+ */
+
+// 解决方法是可以将foo和bar写成函数，函数具有提升的作用。
+
+```
+
+CommonJS与ES6差异：
+ - CommonJS模块输出的是一个值的拷贝，ES6模块输出值的引用
+ - CommonJS模块是运行期加载，ES6模块是编译时输出接口
+ - CommonJS模块的require()是同步加载，ES6模块的import命令是异步加载，有一个独立的模块依赖的解析阶段。
+
 
 
