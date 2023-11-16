@@ -166,6 +166,8 @@ Node.js会将一下内容视为CommonJS模块
 * 最近的父package.json文件包含值为"commonjs"的顶层字段"type"时，则扩展名为.js的文件
 * 扩展名不是 .mjs、.cjs、.json、.node 或 .js 的文件（当最近的父 package.json 文件包含值为 "module" 的顶层字段 "type" 时，这些文件将被识别为 CommonJS 模块，仅当它们被 required，不用作程序的命令行入口点）。
 
+CommonJS模块本质上是一个module对象，
+
 **循环**
 当有require()调用时，模块在返回时可能未完成执行。
 ```javascript
