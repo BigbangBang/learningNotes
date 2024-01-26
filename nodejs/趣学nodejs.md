@@ -281,3 +281,6 @@ CommonJS与ES6差异：
 
 
 
+## Buffer
+Buffer操作一块内存里面的内容。如果需要按字节解析某块数据就可以使用Buffer。
+
