@@ -1,1 +1,1 @@
-**Just some study notes.**
+# Just some study notes.
