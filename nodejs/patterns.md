@@ -3,15 +3,19 @@
 ## 对象之间的关系
 
 **依赖关系（Dependency）**是类之间最基础的、也是最弱的临时关系。表示一个类（称为客户端类）在某一时刻使用另一个类（称为供应类）的对象。关键特征是如果供应类发生变化，可能会影响到依赖它的客户端类。
+
 ![依赖](https://github.com/BigbangBang/learningNotes/blob/main/picture/patterns-design/%E5%85%B3%E8%81%94.png)
 
 **关联关系（Association）**是一种较强的、持久的关系。表示一个类直接与另一个类相连。通常是一个类对象包含了另一个类对象的引用。
+
 ![关联](https://github.com/BigbangBang/learningNotes/blob/main/picture/patterns-design/%E5%85%B3%E8%81%94.png)
 
 **聚合关系（Aggregation）**是一种”较弱“的拥有关系，子对象可以独立于父对象存在。
+
 ![聚合](https://github.com/BigbangBang/learningNotes/blob/main/picture/patterns-design/%E8%81%9A%E5%90%88.png)
 
 **组合关系（Composition）**是一种“较强”的拥有关系，也成为部分与整体的关系。
+
 ![组合](https://github.com/BigbangBang/learningNotes/blob/main/picture/patterns-design/%E7%BB%84%E5%90%88.png)
 
 类之间的关系还有**继承**和**实现**。
