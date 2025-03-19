@@ -130,5 +130,123 @@ Adapter模式是的原本由于接口不兼容而不能一起动作的那些类�
 ### 迭代器（Iterator）
 让你在不暴露集合底层表现形式（树、队列、栈）的情况下遍历集合中的所有元素。
 
+### 中介者(Intermediary)
+能够减少对象之间混乱无序的依赖关系。该模式会限制对象之间的直接交互，迫使它们通过一个中介者对象进行合作。
+
+### 备忘录（Snapshot）
+允许在不暴露对象实现细节的情况下保存和恢复对象之前的状态。
+
+### 观察者（Observe）
+允许你定义一种订阅机制，可在对象事件发生时通知多个“观察”该对象的其他对象。
 
 ### State(状态)
+让你能在一个对象的内部状态变化时改变其行为，使其看上去就像改变了自己的所属的类。
+
+根据具体的状态抽象出State类，在需要使用状态的上下文环境Context类中持有状态类。在状态State发生变成时可以修改Context中State实例的指向。
+```c++
+class TCPConnection {
+public:
+    TCPConnection();
+
+private:
+    friend class TCPState;
+    void changeState(TCPState* state) {
+        this.state = state;
+    }
+
+private:
+    TCPState* state;
+}
+
+class TCPState {
+protected:
+    void changeState(TCPConnection *connection, TCPState *state) {
+        connection->changeState(state);
+    }
+}
+
+class TCPClosed: public TCPState {
+    // ...
+}
+```
+
+### 策略（Strategy）
+定义一系列算法，把它们一个个封装起来，并且是他们可以相互替换。该模式使得算法可独立于使用他们的客户而变化。
+
+策略类实现一个对外暴露的通用接口，客户端将具体的策略类Strategy对象传递给上下文环境类Context，Context只能通过Strategy暴露的接口进行交互。
+
+### 模板方法（Template Method）
+定义一个操作中的算法的骨架，将一些步骤延迟到子类中。 TemplateMethod使得子类可以不改变一个算法的结构即可重定义该算法的某些特定步骤。
+
+**适用性**  
+* 一次性实现一个算法不变的部分，并将可变的部分留给子类来实现。
+* 各自类的公共行为应该被提取出来集中到一个公共父类中以避免重复。
+* 控制子类的扩展。 
+
+### 访问者（Visitor）
+它能将算法与其所作用的对象隔离开来。
+
+_将原始对象作为参数传递给访问者对象成员方法，以便访问者在实现算法时可以获取到原始对象所包含的一切必要数据_
+
+```c++
+class Equipment {
+public:
+    virutal ~Equipment();
+
+    const char* Name() {return this._name;}
+    
+    virtual Watt Power();
+    virtual Currency NetPrice();
+    virtual Currency DiscountPrice();
+
+    virtual void accept(EquipmentVisitor&);
+protected:
+    Equipment(const char*);
+private:
+    const char* _name;
+}
+
+// 双分流 编译器可以知道访问目标对象具体类型
+void Equipment::accept(EquipmentVisitor& visitor) {
+    visitor.visitorFloppyDisk(this);
+}
+
+class EquipmentVisitor {
+public:
+    virtual ~EquipmentVisitor();
+
+    virtual void visitFloppyDisk(FloppyDisk*);
+    virtual void visitCard(Card *);
+    virtual void visitChassis(Chassis*);
+    virtual void visitBus(Bus*);
+
+protected:
+    // 需要通过派生类构造来实例化对象
+    EquipmentVisitor();
+}
+
+
+class InventoryVisitor : public EquipmentVisitor {
+public:
+    InventoryVisitor();
+
+    Inventory& GetInventory();
+
+    virtual void visitFloppyDisk(FloppyDisk*);
+    virtual void visitCard(Card *);
+    virtual void visitChassis(Chassis*);
+    virtual void visitBus(Bus*);
+
+private: 
+    Inventory _inventory;
+}
+
+void InventoryVisitor::visitFloppyDisk(FloppyDisk* e) {
+    this._inventory.Accumulate(e);
+}
+
+void InventoryVisitor::VisitChassis(Chassis* e) {
+    this._inbentory.Accumulate(e);
+}
+
+```
