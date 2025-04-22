@@ -54,3 +54,18 @@ skynet_malloc(size_t size) {
 函数声明/定义会"屏蔽"同名的宏定义，这是因为函数是实际的符号，而宏只是文本替换。
 所以在使用 jemalloc 时：
 宏定义 #define skynet_malloc malloc 实际上不会生效，系统会使用 malloc_hook.c 中的函数实现，这个宏定义实际上是为了 NOUSE_JEMALLOC 情况下使用的。
+
+
+
+
+
+### 杂项
+* sizeof使用
+```c
+static struct handle_storage *H = NULL;
+// ...
+struct handle_storage * s = skynet_malloc(sizeof(*H));
+
+// sizeof是编译时运算符， H初始化为null，*H并不会实际解引用。
+```
+
