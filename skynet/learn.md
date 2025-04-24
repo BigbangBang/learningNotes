@@ -62,10 +62,11 @@ skynet_malloc(size_t size) {
 ### 杂项
 * sizeof使用
 ```c
+// sizeof是编译时运算符， H初始化为null，*H并不会实际解引用。
 static struct handle_storage *H = NULL;
 // ...
 struct handle_storage * s = skynet_malloc(sizeof(*H));
-
-// sizeof是编译时运算符， H初始化为null，*H并不会实际解引用。
 ```
+
+
 
