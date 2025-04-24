@@ -68,5 +68,10 @@ static struct handle_storage *H = NULL;
 struct handle_storage * s = skynet_malloc(sizeof(*H));
 ```
 
-
+* 对总是2的幂值进行取余，位运算比除法运算高快5~10倍。位运算只需要一个始终周期。
+```c
+int hash = handle & (s->slot_size-1);
+// ...
+int hash = skynet_context_handle(s->slot[i]) & (s->slot_size * 2 - 1);
+```
 
