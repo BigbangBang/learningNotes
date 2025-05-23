@@ -55,7 +55,21 @@ skynet_malloc(size_t size) {
 所以在使用 jemalloc 时：
 宏定义 #define skynet_malloc malloc 实际上不会生效，系统会使用 malloc_hook.c 中的函数实现，这个宏定义实际上是为了 NOUSE_JEMALLOC 情况下使用的。
 
+## Master/Slave mode && Cluster mode
 
+### Master/Slave模式
+每个skynet进程都是一个slave节点，可以通过配置启动服务来进行节点间的通讯。
+**配置**
+```
+harbor = 1 // 节点唯一编号，最多支持255个节点。如果harbor为0，则skynet工作在单节点环境下。
+standalone = "127.0.0.1:2013" // 如果当前进程为主进程需要配置，开启一个主节点让其他节点接入。
+master = "127.0.0.1:2013" // 指定skynet控制中心的地址和端口。
+address = "127.0.0.1:2013" // 当前节点的的ip和端口，方便其他节点和它组网。
+```
+
+### Cluster模式
+Cluster可以和Master/Slaver共存。
+Cluster是去中心化的，每个服务器都需要一份配置文件。
 
 
 
