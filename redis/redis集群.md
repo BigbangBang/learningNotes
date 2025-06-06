@@ -1,4 +1,4 @@
-![alt text](https://github.dev/BigbangBang/learningNotes/blob/6f9e594b120348e48a16bef3247eadf9b3691dc3/picture/redis/redis%E9%9B%86%E7%BE%A4.png)
+![alt text](https://github.com/BigbangBang/learningNotes/blob/main/picture/redis/redis%E9%9B%86%E7%BE%A4.png)
 
 ## 主从复制（Master-Slave Replication）
 适合场景：写少读多，单点写入，简单高可用。
