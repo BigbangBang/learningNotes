@@ -1,5 +1,4 @@
-
-![](https://github.com/BigbangBang/learningNotes/picture/redis/redis集群.png)
+![alt text](https://github.dev/BigbangBang/learningNotes/blob/6f9e594b120348e48a16bef3247eadf9b3691dc3/picture/redis/redis%E9%9B%86%E7%BE%A4.png)
 
 ## 主从复制（Master-Slave Replication）
 适合场景：写少读多，单点写入，简单高可用。
@@ -45,7 +44,8 @@ redis在2.8版本之后提供了**哨兵(Sentinel)机制**，来实现主节点�
 为了减少误判主从节点的状态，可以通过部署多个哨兵节点（3个）构成哨兵集群。通过多个哨兵节点一起判断，避免单个哨兵节点因为自身网络不好而误判。
 
 #### 判断主节点故障
-![](https://github.com/BigbangBang/learningNotes/picture/redis/sentinel_view.png)
+![alt text](https://github.dev/BigbangBang/learningNotes/blob/6f9e594b120348e48a16bef3247eadf9b3691dc3/picture/redis/sentinel_view.png)
+
 当某个哨兵节点由于PING主从节点失败，就标记其为[主观下线]。并且该哨兵就作为[候选者]进行后续的投票和主从切换
 
 并通知其他哨兵节点发起投票命令，根据投票结果判断节点是否下线。
