@@ -1,4 +1,6 @@
 
+![](https://github.com/BigbangBang/learningNotes/picture/redis/redis集群.png)
+
 ## 主从复制（Master-Slave Replication）
 适合场景：写少读多，单点写入，简单高可用。
 一个主服务器，多个从服务器。主服务器同步数据到从服务器，从服务器只处理读请求。
@@ -77,7 +79,10 @@ redis-cli --cluster create 127.0.0.1:7000 127.0.0.1:7001 127.0.0.1:7002 127.0.0.
 * 会自动选择3个节点为主节点
 * 其余3个节点作为这3个主节点的从节点（每个节点配置一个从节点）（--cluster-replicas 1）
 * 自动完成 CLUSTER MEET、SLOTS 分配和主从绑定。自动部署了cluster集群和slot的分配。
-
 如果--cluster-replicas 0，表示不添加从节点。
+
+在故障转移选择新的主节点使用的算法都是Raft算法的领头选举（leader election）方法来实现的。
+
+
 
 
