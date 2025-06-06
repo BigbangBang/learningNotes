@@ -44,7 +44,7 @@ redis在2.8版本之后提供了**哨兵(Sentinel)机制**，来实现主节点�
 为了减少误判主从节点的状态，可以通过部署多个哨兵节点（3个）构成哨兵集群。通过多个哨兵节点一起判断，避免单个哨兵节点因为自身网络不好而误判。
 
 #### 判断主节点故障
-![alt text](https://github.dev/BigbangBang/learningNotes/blob/6f9e594b120348e48a16bef3247eadf9b3691dc3/picture/redis/sentinel_view.png)
+![alt text](https://github.com/BigbangBang/learningNotes/blob/main/picture/redis/sentinel_view.png)
 
 当某个哨兵节点由于PING主从节点失败，就标记其为[主观下线]。并且该哨兵就作为[候选者]进行后续的投票和主从切换
 
