@@ -31,3 +31,17 @@ const num: u32 = 100;
 let (a, mut b):(bool, bool) = (true, false);
 b = true;
 ```
+
+### 变量遮蔽
+再同一作用域中，后声明的同一变量会覆盖前面的。
+```rust
+fn main() {
+    let x = 5;
+    let x = x + 1; // 6
+    {
+        let x = x * 2; // 12
+        println!("{}", x);
+    }
+    println!("{}", x); // 6
+}
+```
